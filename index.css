@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+    background-color: rgb(190, 175, 108);
+    text-align: center;
+}
+
+#root {
+    padding: 3rem;
+    text-align: center;
+}
+
+#root canvas {
+    display: block;
+    margin: 0 auto;
+}

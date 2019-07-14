@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./index.css" />
+    <title>SortBubble</title>
+</head>
+
+<body>
+    <div>
+        <span>
+            <label>Выберите количество элементов </label>
+            <input id="counts" type="number" value="5" min="3" max="13" onchange="changed()"/>
+            <br/>
+            <br/>
+        </span>
+    </div>
+    <div>
+        <label>Выберите цвет блоков </label>
+        <select id="select" size="1" onchange="changed()">
+            <option selected value="s1" style="color:cyan">Бирюзовый</option>
+            <option value="s2" style="color:blue">Голубой</option>
+            <option value="s3" style="color:orange">Оранжевый</option>
+            <option value="s4" style="color:yellow">Желтый</option>
+            <option value="s5" style="color:green">Зелёный</option>
+            <option value="s6" style="color:purple">Фиолетовый</option>
+            <option value="s7" style="color:red">Красный</option>
+        </select>
+        <br/>
+        <br/>
+    </div>
+    <div>
+        <input id="bt1" type="button" value="Начать сортировку" onclick="start()" />
+        <br/>
+    </div>
+    <div id="root">
+    </div>
+    <div>
+        <label id="state">Нажмите начать сортировку</label>
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>
