@@ -212,13 +212,13 @@ function start() {
 
     this.interval = setInterval(() => {
         if (this.count <= mas.length) {
-            const p1 = new Promise((resolve, reject) => {
+            const p1 = new Promise((resolve) => {
                 setTimeout(() => {
                     sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
                 }, this.speedSort * 50);
                 resolve();
             }).then(() => {
-                const p2 = new Promise((resolve, reject) => {
+                return new Promise((resolve) => {
                     setTimeout(() => {
                         sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     }, this.speedSort * 100);
@@ -254,43 +254,4 @@ function start() {
             console.log('clearInterval');
         }
     }, this.speedSort * 300);
-
-    //без Promise
-    //interval = setInterval(() => {
-    //    if (this.count <= mas.length) {
-    //        setTimeout(function() {
-    //            sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
-    //        }, 100);
-    //        setTimeout(function() {
-    //            sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
-    //        }, 200);
-    //        setTimeout(function() {
-    //            sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
-    //            this.count += 1;
-    //        }, 400);
-    //        console.log(this.count);
-    //    } else {
-    //        this.clearInterval(interval);
-    //        var i = function() {
-    //            let it = this.count.toString()
-    //            switch (it.slice(-1)) {
-    //                case '1':
-    //                    { return " итерацию."; }
-    //                case '2':
-    //                    { return " итерации."; }
-    //                case '3':
-    //                    { return " итерации."; }
-    //                case '4':
-    //                    { return " итерации."; }
-    //                default:
-    //                    { return " итераций."; }
-    //            }
-    //        };
-    //        this.labelState.textContent = "Сортировка окончена. Сортировка произведена за " + this.count + " " + i();
-    //        button1.disabled = 0;
-    //        select.disabled = 0;
-    //        counts.disabled = 0;
-    //        console.log('clearInterval');
-    //    }
-    //}, 700);
 }
