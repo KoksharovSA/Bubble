@@ -105,21 +105,21 @@
     }
 
     clonemass(mass, color) {
-        let clonemass = [];
+        let clon = [];
         for (let y = 0; y < 3; y++) {
-            clonemass[y] = [];
+            clon[y] = [];
             for (let x = 0; x < this.count; x++) {
                 if (y === 1) {
-                    clonemass[y][x] = mass[y][x];
+                    clon[y][x] = mass[y][x];
                     if (mass[y][x]) {
                         view.renderBlock(((view.width - (this.count * 45)) / 2) + x * 45, 45, color, mass[y][x]);
                     }
                 } else {
-                    clonemass[y][x] = 0;
+                    clon[y][x] = 0;
                 }
             }
         }
-        return clonemass;
+        return clon;
     }
 }
 
