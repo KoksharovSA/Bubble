@@ -3,6 +3,7 @@
     massCount = [];
     notSortWorkMass = [];
     workMass = [];
+
     createMass() {
         const mass = [];
         for (let x = 0; x <= this.count; x++) {
@@ -10,6 +11,7 @@
         }
         return mass;
     }
+
     createWorkMass(mass) {
         const workMass = this.workMass;
         for (let y = 0; y < 3; y++) {
@@ -43,6 +45,7 @@
         }
         ob.notSortWorkMass = mass;
     }
+
     reversCountStep2(ob, reversElement, color) {
         const mass = ob.notSortWorkMass;
         let temp = mass[0][reversElement];
@@ -61,6 +64,7 @@
         }
         ob.notSortWorkMass = mass;
     }
+
     reversCountStep3(ob, reversElement, color) {
         const mass = ob.notSortWorkMass;
         let temp = mass[0][reversElement + 1];
@@ -79,28 +83,27 @@
         }
         ob.notSortWorkMass = mass;
     }
+
     sortMass(mass) {
         let temp = mass;
         let hasSort = false;
         while (!hasSort) {
             hasSort = true;
             for (let y = 0; y < mass.length; y++) {
-
                 for (let x = 0; x < mass[y].length; x++) {
                     if (y === 1 && x < mass[y].length - 1 && mass[y][x] > mass[y][x + 1]) {
                         let a = mass[y][x];
                         mass[y][x] = mass[y][x + 1]
                         mass[y][x + 1] = a;
                         hasSort = false;
-
                         this.massCount.push(x);
                     }
                 }
             }
-
         }
         console.log(this.massCount);
     }
+
     clonemass(mass, color) {
         let clonemass = [];
         for (let y = 0; y < 3; y++) {
@@ -121,15 +124,6 @@
 }
 
 class View {
-    static colors = {
-        's1': 'cyan',
-        's2': 'blue',
-        's3': 'orange',
-        's4': 'yellow',
-        's5': 'green',
-        's6': 'purple',
-        's7': 'red'
-    }
     constructor(element, width, height, blockWidth, blockHeight) {
         this.element = element;
         this.width = width;
@@ -145,6 +139,17 @@ class View {
 
         this.element.appendChild(this.canvas);
     }
+
+    static colors = {
+        's1': 'cyan',
+        's2': 'blue',
+        's3': 'orange',
+        's4': 'yellow',
+        's5': 'green',
+        's6': 'purple',
+        's7': 'red'
+    }
+
     renderBlock(x, y, color, count) {
         this.context.fillStyle = color;
         this.context.strokeStyle = 'black';
@@ -154,6 +159,7 @@ class View {
         this.context.font = '18px serif';
         this.context.strokeText(count, x + 10, y + 25);
     }
+
     clearCanv() {
         this.context.clearRect(0, 0, this.width, this.height);
     }
@@ -163,12 +169,12 @@ const sortBubble = new SortBubble();
 const root = document.querySelector('#root');
 const view = new View(root, 600, 150, 40, 40);
 
-var speedSort = 3;
-var colorRect = document.getElementById('select').value;
-var button1 = document.getElementById('bt1');
-var labelState = document.getElementById('state');
-var select = document.getElementById('select');
-var counts = document.getElementById('counts');
+speedSort = 5;
+colorRect = document.getElementById('select').value;
+button1 = document.getElementById('bt1');
+labelState = document.getElementById('state');
+select = document.getElementById('select');
+counts = document.getElementById('counts');
 
 sortBubble.createWorkMass(sortBubble.createMass());
 sortBubble.notSortWorkMass = sortBubble.clonemass(sortBubble.workMass, View.colors[this.colorRect]);
@@ -206,21 +212,20 @@ function start() {
 
     this.interval = setInterval(() => {
         if (this.count <= mas.length) {
-
             const p1 = new Promise((resolve, reject) => {
-                setTimeout(function () {
+                setTimeout(() => {
                     sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
                 }, this.speedSort * 50);
                 resolve();
             }).then(() => {
                 const p2 = new Promise((resolve, reject) => {
-                    setTimeout(function () {
+                    setTimeout(() => {
                         sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     }, this.speedSort * 100);
                     resolve();
                 });
             }).then(() => {
-                setTimeout(function () {
+                setTimeout(() => {
                     sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     this.count += 1;
                 }, this.speedSort * 150);
@@ -228,9 +233,8 @@ function start() {
             });
         } else {
             this.clearInterval(interval);
-            var i = function () {
-                let it = this.count.toString()
-                switch (it.slice(-1)) {
+            var i = () => {
+                switch (this.count.toString().slice(-1)) {
                     case '1':
                         { return " итерацию."; }
                     case '2':
@@ -251,8 +255,7 @@ function start() {
         }
     }, this.speedSort * 300);
 
-
-
+    //без Promise
     //interval = setInterval(() => {
     //    if (this.count <= mas.length) {
     //        setTimeout(function() {
