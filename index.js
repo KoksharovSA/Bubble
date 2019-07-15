@@ -1,4 +1,4 @@
-class SortBubble {
+﻿class SortBubble {
     count = document.getElementById('counts').value;
     massCount = [];
     notSortWorkMass = [];
@@ -179,7 +179,7 @@ var count = 0;
 
 function changed() {
     view.clearCanv();
-    this.labelState.textContent = 'Нажмите начать сортировку';
+    this.labelState.textContent = "Нажмите начать сортировку";
     sortBubble.count = document.getElementById('counts').value;
     colorRect = document.getElementById('select').value
     this.count = 0;
@@ -192,45 +192,95 @@ function changed() {
 }
 
 function start() {
-    this.labelState.textContent = 'Идёт сортировка...';
+    this.labelState.textContent = "Идёт сортировка...";
     button1.disabled = 1;
     select.disabled = 1;
     counts.disabled = 1;
+
     interval = setInterval(() => {
         if (this.count <= mas.length) {
-            setTimeout(function() {
-                sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
-            }, 100);
-            setTimeout(function() {
-                sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
-            }, 200);
-            setTimeout(function() {
-                sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
-                this.count += 1;
-            }, 400);
-            console.log(this.count);
+
+            const p1 = new Promise((resolve, reject) => {
+                setTimeout(function () {
+                    sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                }, 100);
+                resolve();
+            }).then(() => {
+                const p2 = new Promise((resolve, reject) => {
+                    setTimeout(function () {
+                        sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                    }, 200);
+                    resolve();
+                });
+            }).then(() => {
+                setTimeout(function () {
+                    sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                    this.count += 1;
+                }, 300);
+                console.log(this.count);
+            });
         } else {
             this.clearInterval(interval);
-            var i = function() {
+            var i = function () {
                 let it = this.count.toString()
                 switch (it.slice(-1)) {
                     case '1':
-                        { return ' итерацию.'; }
+                        { return " итерацию."; }
                     case '2':
-                        { return ' итерации.'; }
+                        { return " итерации."; }
                     case '3':
-                        { return ' итерации.'; }
+                        { return " итерации."; }
                     case '4':
-                        { return ' итерации.'; }
+                        { return " итерации."; }
                     default:
-                        { return ' итераций.'; }
+                        { return " итераций."; }
                 }
             };
-            this.labelState.textContent = 'Сортировка окончена. Сортировка произведена за ' + this.count + ' ' + i();
+            this.labelState.textContent = "Сортировка окончена. Сортировка произведена за " + this.count + " " + i();
             button1.disabled = 0;
             select.disabled = 0;
             counts.disabled = 0;
             console.log('clearInterval');
         }
-    }, 700);
+    }, 600);
+
+
+
+    //interval = setInterval(() => {
+    //    if (this.count <= mas.length) {
+    //        setTimeout(function() {
+    //            sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
+    //        }, 100);
+    //        setTimeout(function() {
+    //            sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
+    //        }, 200);
+    //        setTimeout(function() {
+    //            sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
+    //            this.count += 1;
+    //        }, 400);
+    //        console.log(this.count);
+    //    } else {
+    //        this.clearInterval(interval);
+    //        var i = function() {
+    //            let it = this.count.toString()
+    //            switch (it.slice(-1)) {
+    //                case '1':
+    //                    { return " итерацию."; }
+    //                case '2':
+    //                    { return " итерации."; }
+    //                case '3':
+    //                    { return " итерации."; }
+    //                case '4':
+    //                    { return " итерации."; }
+    //                default:
+    //                    { return " итераций."; }
+    //            }
+    //        };
+    //        this.labelState.textContent = "Сортировка окончена. Сортировка произведена за " + this.count + " " + i();
+    //        button1.disabled = 0;
+    //        select.disabled = 0;
+    //        counts.disabled = 0;
+    //        console.log('clearInterval');
+    //    }
+    //}, 700);
 }
