@@ -163,6 +163,7 @@ const sortBubble = new SortBubble();
 const root = document.querySelector('#root');
 const view = new View(root, 600, 150, 40, 40);
 
+var speedSort = 3;
 var colorRect = document.getElementById('select').value;
 var button1 = document.getElementById('bt1');
 var labelState = document.getElementById('state');
@@ -175,7 +176,13 @@ sortBubble.sortMass(sortBubble.workMass);
 
 var mas = sortBubble.massCount;
 var count = 0;
+var interval;
 
+function resizeSpeed() {
+    speedSort = 9 - document.getElementById('speed').value;
+    clearInterval(interval);
+    start();
+};
 
 function changed() {
     view.clearCanv();
@@ -197,26 +204,26 @@ function start() {
     select.disabled = 1;
     counts.disabled = 1;
 
-    interval = setInterval(() => {
+    this.interval = setInterval(() => {
         if (this.count <= mas.length) {
 
             const p1 = new Promise((resolve, reject) => {
                 setTimeout(function () {
                     sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
-                }, 100);
+                }, this.speedSort * 50);
                 resolve();
             }).then(() => {
                 const p2 = new Promise((resolve, reject) => {
                     setTimeout(function () {
                         sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
-                    }, 200);
+                    }, this.speedSort * 100);
                     resolve();
                 });
             }).then(() => {
                 setTimeout(function () {
                     sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     this.count += 1;
-                }, 300);
+                }, this.speedSort * 150);
                 console.log(this.count);
             });
         } else {
@@ -242,7 +249,7 @@ function start() {
             counts.disabled = 0;
             console.log('clearInterval');
         }
-    }, 600);
+    }, this.speedSort * 300);
 
 
 

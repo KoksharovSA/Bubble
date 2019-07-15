@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 
 <head>
@@ -33,13 +33,16 @@
         <br/>
     </div>
     <div>
+        <p>Скорость: <input type="range" min="1" max="8" id="speed" oninput="resizeSpeed()" value="5"></p>
+    </div>
+    <div>
         <input id="bt1" type="button" value="Начать сортировку" onclick="start()" />
         <br/>
     </div>
     <div id="root">
     </div>
     <div>
-        <label id="state">Нажмите начать сортировку</label>
+        <label id="state" >Нажмите начать сортировку</label>
     </div>
     <script src="index.js"></script>
 </body>
