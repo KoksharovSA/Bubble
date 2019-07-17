@@ -62,7 +62,7 @@ class SortBubble {
     }
 
     //Метод меняющий элементы массива местами шаг 1, принимает контекст, индекс элемента который необходимо поменять и цвет блока для отрисовки
-    reversCountStep1(ob, reversElement, color) {
+    reversCountStepOne(ob, reversElement, color) {
         const mass = ob.notSortWorkMass;
         let temp1 = mass[1][reversElement];
         mass[0][reversElement] = temp1;
@@ -83,7 +83,7 @@ class SortBubble {
     }
 
     //Метод меняющий элементы массива местами шаг 2, принимает контекст, индекс элемента который необходимо поменять и цвет блока для отрисовки
-    reversCountStep2(ob, reversElement, color) {
+    reversCountStepTwo(ob, reversElement, color) {
         const mass = ob.notSortWorkMass;
         let temp = mass[0][reversElement];
         mass[0][reversElement + 1] = temp;
@@ -104,7 +104,7 @@ class SortBubble {
     }
 
     //Метод меняющий элементы массива местами шаг 3, принимает контекст, индекс элемента который необходимо поменять и цвет блока для отрисовки
-    reversCountStep3(ob, reversElement, color) {
+    reversCountStepThree(ob, reversElement, color) {
         const mass = ob.notSortWorkMass;
         let temp = mass[0][reversElement + 1];
         mass[1][reversElement + 1] = temp;
@@ -188,7 +188,7 @@ sortBubble.sortMass(sortBubble.workMass); //Сортируе рабочий ма
 
 mas = sortBubble.massCount; //Добовляем переменную и передаём ей массив индексов элементов которые необходимо поменять при сортировке
 count = 0; //Добовляем переменную количества замен элементов произведённых при сортировке
-interval; //Добовляем переменную для setinterval
+interval = (()=>{},0); //Добовляем переменную для setinterval
 
 //Метод изменяющий скорость
 function resizeSpeed() {
@@ -228,19 +228,19 @@ function start() {
             //Выполняем визуализирование сортировки за 3 шага 
             const p1 = new Promise((resolve) => {
                 setTimeout(() => {
-                    sortBubble.reversCountStep1(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                    sortBubble.reversCountStepOne(sortBubble, mas[this.count], View.colors[this.colorRect]);
                 }, this.speedSort * 50);
                 resolve();
             }).then(() => {
                 return new Promise((resolve) => {
                     setTimeout(() => {
-                        sortBubble.reversCountStep2(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                        sortBubble.reversCountStepTwo(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     }, this.speedSort * 100);
                     resolve();
                 });
             }).then(() => {
                 setTimeout(() => {
-                    sortBubble.reversCountStep3(sortBubble, mas[this.count], View.colors[this.colorRect]);
+                    sortBubble.reversCountStepThree(sortBubble, mas[this.count], View.colors[this.colorRect]);
                     this.count += 1;
                 }, this.speedSort * 150);
                 console.log(this.count);
