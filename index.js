@@ -193,8 +193,10 @@ interval; //Добовляем переменную для setinterval
 //Метод изменяющий скорость
 function resizeSpeed() {
     speedSort = 9 - document.getElementById('speed').value;
-    clearInterval(interval);
-    start();
+    if (this.count !== 0) {
+        clearInterval(interval);
+        start();
+    }
 };
 
 //Метод изменяющий цвет и количество блоков, перерисовывает из на поле
