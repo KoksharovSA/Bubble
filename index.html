@@ -1,49 +1,43 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./index.css" />
     <title>SortBubble</title>
 </head>
-
 <body>
-    <div>
+    <div style="margin:20px">
         <h1>Сортировка массива пузырьком</h1>
     </div>
-    <div>
-        <span>
-            <label>Выберите количество элементов </label>
-            <input id="counts" type="number" value="5" min="3" max="13" onchange="changed()" />
-            <br />
-            <br />
-        </span>
+    <div style="margin:20px">
+        <p>Выберите количество элементов<input style="margin:5px" id="counts" type="number" value="5" min="3" max="13" onchange="changed()" /> </p>
     </div>
-    <div>
-        <label>Выберите цвет блоков </label>
-        <select id="select" size="1" onchange="changed()">
-            <option selected value="s1" style="color:cyan">Бирюзовый</option>
-            <option value="s2" style="color:blue">Голубой</option>
-            <option value="s3" style="color:orange">Оранжевый</option>
-            <option value="s4" style="color:yellow">Желтый</option>
-            <option value="s5" style="color:green">Зелёный</option>
-            <option value="s6" style="color:purple">Фиолетовый</option>
-            <option value="s7" style="color:red">Красный</option>
-        </select>
-        <br />
-        <br />
+    <div style="margin:20px">
+        <p>
+            Выберите цвет блоков
+            <select id="select" size="1" onchange="changed()">
+                <option selected value="s1" style="color:cyan">Бирюзовый</option>
+                <option value="s2" style="color:blue">Голубой</option>
+                <option value="s3" style="color:orange">Оранжевый</option>
+                <option value="s4" style="color:yellow">Желтый</option>
+                <option value="s5" style="color:green">Зелёный</option>
+                <option value="s6" style="color:purple">Фиолетовый</option>
+                <option value="s7" style="color:red">Красный</option>
+            </select>
+        </p>
     </div>
-    <div>
+    <div style="margin:20px">
         <p>Скорость: <input type="range" min="1" max="8" id="speed" oninput="resizeSpeed()" value="5"></p>
     </div>
-    <div>
+    <div style="margin:20px">
         <input id="bt1" type="button" value="Начать сортировку" onclick="start()" />
-        <br />
     </div>
-    <div id="root">
+    <hr />
+    <div id="root" style="margin-top:20px; margin-bottom:10px">
     </div>
+    <hr />
     <div>
-        <label id="state">Нажмите начать сортировку</label>
+        <p id="state" style="margin:20px">Нажмите начать сортировку</p>
     </div>
     <script src="index.js"></script>
 </body>
