@@ -92,7 +92,7 @@ class SortBubble {
         mass[2][reversElement] = temp;
         mass[2][reversElement + 1] = 0;
         //Отрисовка 2 шага изменения в canvas
-        view.clearCanv();       
+        view.clearCanv();
         for (let y = 0; y < 3; y++) {
             for (let x = 0; x < this.count; x++) {
                 if (ob.notSortWorkMass[y][x]) {
@@ -122,7 +122,7 @@ class SortBubble {
             }
         }
         ob.notSortWorkMass = mass;
-    } 
+    }
 }
 
 //Класс отвечающий за отображение блоков в canvas
@@ -188,7 +188,7 @@ sortBubble.sortMass(sortBubble.workMass); //Сортируе рабочий ма
 
 mas = sortBubble.massCount; //Добовляем переменную и передаём ей массив индексов элементов которые необходимо поменять при сортировке
 count = 0; //Добовляем переменную количества замен элементов произведённых при сортировке
-interval = (()=>{},0); //Добовляем переменную для setinterval
+interval = setInterval(() => {}, 0); //Добовляем переменную для setinterval
 
 //Метод изменяющий скорость
 function resizeSpeed() {
@@ -215,7 +215,7 @@ function changed() {
 
 //Метод начинающий сортировку
 function start() {
-    
+
     this.labelState.textContent = "Идёт сортировка...";
     //Деактивируем кнопку старт, селектора выбора цвета и кол-ва блоков
     button1.disabled = 1;
