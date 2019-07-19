@@ -1,4 +1,4 @@
-//Класс отвечающий за сортировку массивов
+﻿//Класс отвечающий за сортировку массивов
 class SortBubble {
     count = document.getElementById('counts').value; //Кол-во элементов массивов    
     workMass = []; //Рабочий массив
@@ -27,7 +27,7 @@ class SortBubble {
             clon[y] = [];
             for (let x = 0; x < this.count; x++) {
                 if (y === 1) {
-                    clon[y][x] = mass[y][x];                   
+                    clon[y][x] = mass[y][x];
                 } else {
                     clon[y][x] = 0;
                 }
@@ -54,7 +54,6 @@ class SortBubble {
                 }
             }
         }
-        console.log(this.massCount);
     }
 
     //Метод меняющий элементы массива местами шаг 1
@@ -90,7 +89,7 @@ class SortBubble {
         mass[0][reversElement + 1] = 0;
         temp = mass[2][reversElement];
         mass[1][reversElement] = temp;
-        mass[2][reversElement] = 0;        
+        mass[2][reversElement] = 0;
         ob.notSortWorkMass = mass;
     }
 }
@@ -101,19 +100,15 @@ class View {
         this.element = element; //Элемент DOM в который добавляем canvas
         this.scaleX = elementWidth / 600; //Масштаб canvas
         this.scaleY = elementHeight / 150; //Масштаб canvas
-        console.log(this.scaleX);
         this.width = 600 * this.scaleX; //Длина для canvas
         this.height = 150 * this.scaleY; //Высота для canvas
-        console.log(this.width, this.height);
         this.canvas = document.createElement('canvas'); //Создаём элемент canvas
         this.canvas.width = this.width; //Задаём длину canvas 
         this.canvas.height = this.height; //Задаём высоту canvas
         this.context = this.canvas.getContext('2d'); //задаём canvas параметр 2d
-
         this.blockWidth = 40 * this.scaleX; //Длина для блоков
-        this.blockHeight = 40 * this.scaleY; //Ширина для блоков
+        this.blockHeight = 40 * this.scaleX; //Ширина для блоков
         this.canvas.id = 'canvas';
-
         this.element.appendChild(this.canvas); //Добавляем canvas в элемент DOM
     }
 
@@ -132,11 +127,11 @@ class View {
     renderBlock(x, y, color, count) {
         this.context.fillStyle = color;
         this.context.strokeStyle = 'black';
-        this.context.lineWidth = 2;
+        this.context.lineWidth = 1;
         this.context.fillRect(x, y, this.blockWidth, this.blockHeight);
         this.context.strokeRect(x, y, this.blockWidth, this.blockHeight);
         this.context.font = 18 * this.scaleX + 'px serif';
-        this.context.strokeText(count, x + (10 * this.scaleX), y + (25 * this.scaleY));
+        this.context.strokeText(count, x + (10 * this.scaleX), y + (25 * this.scaleX));
     }
 
     //Метод отвечающий за отрисовку массива, принимает контекст и цвет
@@ -146,7 +141,7 @@ class View {
         for (let y = 0; y < mass.length; y++) {
             for (let x = 0; x < mass[y].length; x++) {
                 if (mass[y][x]) {
-                    this.renderBlock(((this.width - (mass[y].length * (45 * this.scaleX))) / 2) + (x * (45 * this.scaleX)), ((this.height - (mass.length * (45 * this.scaleY))) / 2) + (y * (45 * this.scaleY)), View.colors[color], mass[y][x]);
+                    this.renderBlock(((this.width - (mass[y].length * (45 * this.scaleX))) / 2) + (x * (45 * this.scaleX)), ((this.height - (mass.length * (40 * this.scaleX))) / 2) + (y * (45 * this.scaleX)), View.colors[color], mass[y][x]);
                 }
             }
         }
@@ -183,7 +178,6 @@ view.renderMass(sortBubble, this.colorRect); //Отрисовываем масс
 window.onresize = () => {
     root.removeChild(document.getElementById('canvas'));
     view = new View(root, root.clientWidth, root.clientHeight);
-    console.log(sortBubble.notSortWorkMass, this.colorRect);
     view.renderMass(sortBubble, this.colorRect);
 };
 

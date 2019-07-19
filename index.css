@@ -3,54 +3,60 @@
     width: 150px;
     background-color: #ffffff;
     color: black;
-    border: 2px solid #000000;
-    border-radius: 15px;
+    border: 2px solid rgb(149, 149, 149);
+    border-radius: 13px;
 }
 
 .container {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
-    grid-auto-columns: auto;
+    grid-template-areas: "head head" "params canv" "state state";
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 100px 4fr 100px;
+    min-height: 100vh;
 }
 
-.container>div {
-    grid-gap: 1em;
-}
+    .container > div {
+        grid-gap: 1em;
+    }
 
 .head {
-    grid-row: 1;
+    grid-area: head;
     text-align: center;
     background: rgb(149, 149, 149);
     color: #ffffff;
 }
 
 .state {
-    grid-row: 3;
+    grid-area: state;
     text-align: center;
     background: rgb(149, 149, 149);
     color: #ffffff;
 }
 
-.pole {
-    grid-row: 2;
-    display: grid;
-    grid-template-columns: 2fr 4fr;
-    align-content: center;
-}
-
 .params {
-    grid-column: 1;
+    grid-area: params;
     border: 2px solid silver;
     border-radius: 15px;
     padding: 2px;
-    text-align: center;
+    text-align: center; 
+    align-self: stretch;
+    vertical-align: middle;
 }
 
 .canv {
-    grid-column: 2;
+    grid-area: canv;
     border: 2px solid silver;
     border-radius: 15px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .container {
+        grid-template-areas: "head" "params" "canv" "state";
+        grid-template-columns: 100%;
+        grid-template-rows: 100px 4fr 4fr 100px;
+    }
 }
